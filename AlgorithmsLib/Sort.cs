@@ -73,6 +73,29 @@ namespace AlgorithmsLib
             }
         }
 
+        /// <summary>
+        /// Сортировка выбором. Сложность алгоритма: O(n^2).
+        /// </summary>
+        public static void Selection(int[] array)
+        {
+            int min, pos;
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+                min = array[i];
+                pos = i;
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    if (array[j] < min)
+                    {
+                        min = array[j];
+                        pos = j;
+                    }
+                }
+                if (i != pos) 
+                    Swap(ref array[i], ref array[pos]);
+            }
+        }
+
         public static void Swap(ref int a, ref int b)
         {
             a = a + b;
