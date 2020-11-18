@@ -96,6 +96,25 @@ namespace AlgorithmsLib
             }
         }
 
+        /// <summary>
+        /// Сортировка вставками. Сложность алгоритма: O(n^2).
+        /// </summary>
+        public static void Insert(int[] array)
+        {
+            int j, key;
+            for (int i = 1; i < array.Length; i++)
+            {
+                j = i;
+                key = array[i];
+                while (j > 0 && array[j - 1] > key)
+                {
+                    array[j] = array[j - 1];
+                    j--;
+                }
+                array[j] = key;
+            }
+        }
+
         public static void Swap(ref int a, ref int b)
         {
             a = a + b;
