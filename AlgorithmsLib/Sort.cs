@@ -15,7 +15,7 @@ namespace AlgorithmsLib
         public static void Bubble(int[] array)
         {
             int right = array.Length - 1,
-                temp = 0;
+                pos = 0;
             bool flag = false;
             for (int i = 0; i < array.Length - 1; i++)
             {
@@ -24,12 +24,12 @@ namespace AlgorithmsLib
                     if (array[j] > array[j + 1])
                     {
                         flag = true;
-                        temp = j;
+                        pos = j;
                         Swap(ref array[j], ref array[j + 1]);
                     }
                 }
                 if (!flag) break;
-                right = temp;
+                right = pos;
                 flag = false;
             }
         }
@@ -42,7 +42,7 @@ namespace AlgorithmsLib
         {
             int left = 0,
                 right = array.Length - 1,
-                temp = 0;
+                pos = 0;
             bool flag = false;
             while (left < right)
             {
@@ -51,24 +51,24 @@ namespace AlgorithmsLib
                     if (array[i] > array[i + 1])
                     {
                         flag = true;
-                        temp = i;
+                        pos = i;
                         Swap(ref array[i], ref array[i + 1]);
                     }
                 }
                 if (!flag) break;
-                right = temp;
+                right = pos;
                 flag = false;
                 for (int i = right; i > left; i--)
                 {
                     if (array[i] < array[i - 1])
                     {
                         flag = true;
-                        temp = i;
+                        pos = i;
                         Swap(ref array[i], ref array[i - 1]);
                     }
                 }
                 if (!flag) break;
-                left = temp;
+                left = pos;
                 flag = false;
             }
         }
