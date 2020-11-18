@@ -59,5 +59,14 @@ namespace AlgorithmsLib
             }
             return n;
         }
+        /// <summary>
+        /// Обмен значениями двух целочисленных переменных.
+        /// </summary>
+        public static void Swap(ref int a, ref int b)
+        {
+            a = a + b;
+            b = a - b;
+            a = a - b;
+        }
     }
 }
