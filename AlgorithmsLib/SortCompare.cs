@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace AlgorithmsLib
 {
     delegate void SortDelegate(int[] arr);
-    class SortCompare
+    public class SortCompare
     {
         private int[] arr;
 
@@ -19,6 +16,7 @@ namespace AlgorithmsLib
                 arr[i] = rnd.Next(0, 100);
             Console.WriteLine("Массив до сортировки:");
             Print(arr);
+            Console.WriteLine();
         }
 
         public void Compare()
@@ -29,22 +27,34 @@ namespace AlgorithmsLib
                                             Sort.Insert, 
                                             Sort.InsertBinary,
                                             Sort.Selection};
+            Stopwatch sw = new Stopwatch();
+
             for (int i = 0; i < 5; i++)
             {
-                array.CopyTo(arr, 0);
+                arr.CopyTo(array, 0);
+                sw.Restart();
                 sortDelegates[i](array);
-                Console.WriteLine(sortDelegates[i].ToString());
+                sw.Stop();
+                Console.WriteLine(sortDelegates[i].Method.Name);
+                Console.WriteLine($"Затраченное время: {sw.ElapsedMilliseconds}");
                 Print(array);
                 Console.ReadLine();
             }
-            
-            array = Sort.Counting(arr);
-            Console.WriteLine("Сортировка подсчетом");
-            Print(array);
 
-            array.CopyTo(arr, 0);
-            Sort.QuickSort(array, 0, array.Length);
+            sw.Restart();
+            array = Sort.Counting(arr);
+            sw.Stop();
+            Console.WriteLine("Сортировка подсчетом");
+            Console.WriteLine($"Затраченное время: {sw.ElapsedMilliseconds}");
+            Print(array);
+            Console.ReadLine();
+
+            arr.CopyTo(array, 0);
+            sw.Restart();
+            Sort.QuickSort(array, 0, array.Length - 1);
+            sw.Stop();
             Console.WriteLine("Быстрая сортировка");
+            Console.WriteLine($"Затраченное время: {sw.ElapsedMilliseconds}");
             Print(array);
         }
 
