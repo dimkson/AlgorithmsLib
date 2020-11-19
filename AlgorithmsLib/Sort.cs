@@ -151,6 +151,35 @@ namespace AlgorithmsLib
             }
         }
 
+        /// <summary>
+        /// Быстрая сортировка (Сортировка Хоара). Сложность алгоритма: O(n*log n).
+        /// </summary>
+        static void QuickSort(int[] arr, int first, int last)
+        {
+            int i = first,
+                j = last,
+                x = arr[(first + last) / 2];
+            do
+            {
+                while (arr[i] < x)
+                    i++;
+                while (arr[j] > x)
+                    j--;
+                if (i <= j)
+                {
+                    if (arr[i] > arr[j])
+                        Swap(ref arr[i], ref arr[j]);
+                    i++;
+                    j--;
+                }
+            } while (i <= j);
+
+            if (i < last)
+                QuickSort(arr, i, last);
+            if (first < j)
+                QuickSort(arr, first, j);
+        }
+
         public static void Swap(ref int a, ref int b)
         {
             a = a + b;
