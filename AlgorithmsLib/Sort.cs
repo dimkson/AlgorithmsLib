@@ -115,6 +115,42 @@ namespace AlgorithmsLib
             }
         }
 
+        /// <summary>
+        /// Сортировка вставками с бинарным поиском. Сложность алгоритма: O(n^2).
+        /// Алгоритм оптимизирован. Поиск места вставки выполняется с помощью бинарного поиска.
+        /// </summary>
+        public static void InsertBinary(int[] array)
+        {
+            int j, key;
+            int left, right, middle;
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] < array[i - 1])
+                {
+                    key = array[i];
+                    left = 0;
+                    right = i - 1;
+
+                    while (left < right)
+                    {
+                        middle = (right + left) / 2;
+                        if (array[middle] > key)
+                            right = middle;
+                        else
+                            left = middle + 1;
+                    }
+
+                    j = i;
+                    while (j > left)
+                    {
+                        array[j] = array[j - 1];
+                        j--;
+                    }
+                    array[left] = key;
+                }
+            }
+        }
+
         public static void Swap(ref int a, ref int b)
         {
             a = a + b;
