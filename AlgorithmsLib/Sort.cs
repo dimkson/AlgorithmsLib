@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AlgorithmsLib
+﻿namespace AlgorithmsLib
 {
     static public class Sort
     {
@@ -154,7 +148,7 @@ namespace AlgorithmsLib
         /// <summary>
         /// Быстрая сортировка (Сортировка Хоара). Сложность алгоритма: O(n*log n).
         /// </summary>
-        static void QuickSort(int[] arr, int first, int last)
+        public static void QuickSort(int[] arr, int first, int last)
         {
             int i = first,
                 j = last,
@@ -180,7 +174,32 @@ namespace AlgorithmsLib
                 QuickSort(arr, first, j);
         }
 
-        public static void Swap(ref int a, ref int b)
+        /// <summary>
+        /// Сортировка подсчетом. Сложность алгоритма: O(n+k), где k максимальный элемент в массиве.
+        /// </summary>
+        public static int[] Counting(int[] arr)
+        {
+            int max = arr[0];
+            foreach (int item in arr)
+                if (item > max) max = item;
+            
+            int[] arrCount = new int[max + 1];
+            for (int i = 0; i < arr.Length; i++)
+                arrCount[arr[i]]++;
+
+            int[] arrOut = new int[arr.Length];
+            
+            for (int i = 0, b = 0 ; i < arrCount.Length; i++)
+            {
+                for (int j = 0; j < arrCount[i]; j++, b++)
+                {
+                    arrOut[b] = i;
+                }
+            }
+            return arrOut;
+        }
+
+        private static void Swap(ref int a, ref int b)
         {
             a = a + b;
             b = a - b;
